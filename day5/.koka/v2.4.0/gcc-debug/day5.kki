@@ -1,0 +1,177 @@
+module interface day5
+ 
+//------------------------------
+//#kki: import declarations
+ 
+import std/core/types = std/core/types = "";
+import std/core/hnd = std/core/hnd = "";
+import std/core = std/core = "";
+import std/text/parse = std/text/parse = "";
+import std/os/path = std/os/path = "";
+import std/os/dir = std/os/dir = "";
+import std/os/file = std/os/file = "";
+import stack = stack = "";
+ 
+//------------------------------
+//#kki: external imports
+ 
+ 
+//------------------------------
+//#kki: fixity declarations
+ 
+ 
+//------------------------------
+//#kki: local imported aliases
+ 
+// An alias for pure effects: a pure function always returns the same result
+// when called with the same arguments but may not terminate or raise an exception.
+local alias std/core/pure :: E = <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X)> = 1;
+ 
+//------------------------------
+//#kki: type declarations
+ 
+ 
+//------------------------------
+//#kki: declarations
+ 
+// monadic lift
+fun .mlift3836-parse-instrs : (.y.3660 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<(std/core/types/maybe :: V -> V)<std/core/types/int>>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>;
+// monadic lift
+fun .mlift3837-parse-instrs : (.y.3658 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<(std/core/types/maybe :: V -> V)<std/core/types/int>>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>;
+// monadic lift
+fun .mlift3838-parse-instrs : (.y.3656 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>;
+pub fun parse-instrs : (lexbuf : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>;
+// monadic lift
+fun .mlift3839-op : forall<a,(e :: E)> (.acc : (std/core/types/ctail :: V -> V)<(std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>>, acc : (std/core/list :: V -> V)<a>, p : (a) -> (e :: E) std/core/types/bool, y : a, yy : (std/core/list :: V -> V)<a>, .y.3663 : std/core/types/bool) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// monadic lift
+fun .mlift3840-op : forall<a,(e :: E)> (.accm : ((std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>) -> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>, acc : (std/core/list :: V -> V)<a>, p : (a) -> (e :: E) std/core/types/bool, y : a, yy : (std/core/list :: V -> V)<a>, .y.3668 : std/core/types/bool) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// lifted local: split, accum
+fun .ctail-lift3647-split : forall<a,(e :: E)> (ll' : (std/core/list :: V -> V)<a>, acc : (std/core/list :: V -> V)<a>, p : (a) -> (e :: E) std/core/types/bool, .acc : (std/core/types/ctail :: V -> V)<(std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>>) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// lifted local: split, accum
+fun .ctailm-lift3647-split : forall<a,(e :: E)> (ll' : (std/core/list :: V -> V)<a>, acc : (std/core/list :: V -> V)<a>, p : (a) -> (e :: E) std/core/types/bool, .accm : ((std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>) -> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// lifted local: split, accum
+fun .lift3647-split : forall<a,(e :: E)> (ll' : (std/core/list :: V -> V)<a>, acc : (std/core/list :: V -> V)<a>, p : (a) -> (e :: E) std/core/types/bool) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// Port of Haskell fuction [`split`](https://hackage.haskell.org/package/extra-1.7.12/docs/src/Data.List.Extra.html#split),
+// Splits a list into components delimited by separators, where the predicate
+// returns `true` for a separator element. The resulting components do not contain any
+// seperators. Two adjacent separators result in an empty component in the output.
+// ```
+// val ll = "aaa;bbb;ccc"
+// ll.split( fn(x) (x == ';') ) // results in ["aaa", "bbb", "ccc"]
+// val ll' = "aaa;;bbb;;ccc"
+// ll.split( fn(x) (x == ';') ) // results in ["aaa", "", "bbb", "", "ccc"]
+// ```
+pub fun split : forall<a,(e :: E)> (ll : (std/core/list :: V -> V)<a>, predicate : (a) -> (e :: E) std/core/types/bool) -> (e :: E) (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+pub fun get : forall<a> (ls : (std/core/list :: V -> V)<a>, index : std/core/types/int) -> (std/core/types/maybe :: V -> V)<a>;
+pub fun insert : forall<a> (ls : (std/core/list :: V -> V)<a>, to-insert : a, index : std/core/types/int) -> (std/core/list :: V -> V)<a>;
+// monadic lift
+fun .mlift3841-remove : forall<a> (x : a, .y.3679 : (std/core/list :: V -> V)<a>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<a>;
+pub fun remove : forall<a> (ls : (std/core/list :: V -> V)<a>, index : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<a>;
+// monadic lift
+fun .mlift3842-execute : (d : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3689 : ((std/core/list :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>)) -> <(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3843-execute : (from : (stack/stack :: V -> V)<std/core/types/string>, from-index : std/core/types/int, quantity : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, d : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3844-execute : (from : (stack/stack :: V -> V)<std/core/types/string>, from-index : std/core/types/int, quantity : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3687 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3845-execute : (d0 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3694 : ((std/core/list :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>)) -> <(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3846-execute : (from : (stack/stack :: V -> V)<std/core/types/string>, from-index : std/core/types/int, quantity : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, d0 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3847-execute : (from : (stack/stack :: V -> V)<std/core/types/string>, from-index : std/core/types/int, quantity : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3692 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3848-execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from : (stack/stack :: V -> V)<std/core/types/string>, from-index : std/core/types/int, quantity : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, to : (stack/stack :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3849-execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, quantity : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, from : (stack/stack :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3850-execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, quantity : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3684 : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3851-execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, quantity : std/core/types/int, x : (std/core/list :: V -> V)<std/core/types/int>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3683 : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3852-execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, x : (std/core/list :: V -> V)<std/core/types/int>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, quantity : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// solution to part 2
+pub fun execute : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, ins : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>) -> <(std/core/pure :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3853-op : forall<a> (.acc : (std/core/types/ctail :: V -> V)<(std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>>, .ctail.3655 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>, .y.3701 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// monadic lift
+fun .mlift3854-op : forall<a> (.acc : (std/core/types/ctail :: V -> V)<(std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>>, ls : (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>, .ctail.3653 : (std/core/list :: V -> V)<a>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+pub fun .ctail-transpose : forall<a> (ls : (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>, .acc : (std/core/types/ctail :: V -> V)<(std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+pub fun transpose : forall<a> (ls : (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(std/core/list :: V -> V)<a>>;
+// monadic lift
+fun .mlift3855-parse-desc : (.y.3707 : (std/core/list :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (stack/stack :: V -> V)<std/core/types/string>;
+// monadic lift
+fun .mlift3856-parse-desc : (.y.3706 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3857-parse-desc : (.y.3705 : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/types/div :: E),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+pub fun parse-desc : (lexbuf : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/pure :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3858-main : (.y.3717 : (std/core/list :: V -> V)<()>) -> <(std/core/console :: X),(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift3859-main : (.y.3716 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/pure :: E)> ();
+// monadic lift
+fun .mlift3860-main : (description : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, instructions : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, wild_ : (std/core/list :: V -> V)<()>) -> <(std/core/console :: X),(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift3861-main : (description : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, instructions : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+// monadic lift
+fun .mlift3862-main : (lexed : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>, description : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/pure :: E)> ();
+// monadic lift
+fun .mlift3863-main : (lexed : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/string>>) -> <(std/core/console :: X),(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift3864-main : (contents : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+pub fun main : () -> <(std/core/pure :: E),(std/core/console :: X),(std/core/fsys :: X)> ();
+pub fun .hmain : () -> <(std/core/console :: X),(std/core/types/div :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift3865-op : (n : std/core/types/int, to : (stack/stack :: V -> V)<std/core/types/string>, .y.3719 : (std/core/types/string, (stack/stack :: V -> V)<std/core/types/string>)) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ((stack/stack :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>);
+// lifted local: execute0, pop-n
+fun .lift3648-execute0 : (n : std/core/types/int, from : (stack/stack :: V -> V)<std/core/types/string>, to : (stack/stack :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> ((stack/stack :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>);
+// monadic lift
+fun .mlift3866-execute0 : (d : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3730 : ((stack/stack :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>)) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3867-execute0 : (from-index : std/core/types/int, from0 : (stack/stack :: V -> V)<std/core/types/string>, quantity : std/core/types/int, to-index : std/core/types/int, to0 : (stack/stack :: V -> V)<std/core/types/string>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, d : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3868-execute0 : (from-index : std/core/types/int, from0 : (stack/stack :: V -> V)<std/core/types/string>, quantity : std/core/types/int, to-index : std/core/types/int, to0 : (stack/stack :: V -> V)<std/core/types/string>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3728 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3869-execute0 : (d0 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3735 : ((stack/stack :: V -> V)<std/core/types/string>, (stack/stack :: V -> V)<std/core/types/string>)) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3870-execute0 : (from-index : std/core/types/int, from0 : (stack/stack :: V -> V)<std/core/types/string>, quantity : std/core/types/int, to-index : std/core/types/int, to0 : (stack/stack :: V -> V)<std/core/types/string>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, d0 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3871-execute0 : (from-index : std/core/types/int, from0 : (stack/stack :: V -> V)<std/core/types/string>, quantity : std/core/types/int, to-index : std/core/types/int, to0 : (stack/stack :: V -> V)<std/core/types/string>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3733 : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3872-execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, from0 : (stack/stack :: V -> V)<std/core/types/string>, quantity : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, to0 : (stack/stack :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3873-execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, quantity : std/core/types/int, to-index : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, from0 : (stack/stack :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3874-execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, from-index : std/core/types/int, quantity : std/core/types/int, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3725 : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3875-execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, quantity : std/core/types/int, x0 : (std/core/list :: V -> V)<std/core/types/int>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, .y.3724 : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// monadic lift
+fun .mlift3876-execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, x0 : (std/core/list :: V -> V)<std/core/types/int>, xx : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>, quantity : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+// solution to part 1
+pub fun execute0 : (desc : (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>, ins : (std/core/list :: V -> V)<(std/core/list :: V -> V)<std/core/types/int>>) -> <(std/core/pure :: E)> (std/core/list :: V -> V)<(stack/stack :: V -> V)<std/core/types/string>>;
+ 
+//------------------------------
+//#kki: external declarations
+ 
+ 
+//------------------------------
+//#kki: inline definitions
+ 
+//.inline-section
+recursive specialize "__*" fun .lift3647-split // inline size: 10
+  = forall<a,(e :: E)> fn<(e :: E)>(ll': (std/core/list :: V -> V)<a>, acc: (std/core/list :: V -> V)<a>, p: (a) -> (e :: E) std/core/types/bool){
+    (match (ll') {
+      ((std/core/Nil() : (std/core/list :: V -> V)<a> ) as .pat: ((std/core/list :: V -> V)<a>))
+         -> std/core/Cons<(std/core/list :: V -> V)<a>>(acc, (std/core/Nil<(std/core/list :: V -> V)<a>>));
+      ((.skip std/core/Cons((y: a) : a, (yy: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a> ) as .pat0: ((std/core/list :: V -> V)<a>))
+         -> (match ((p(y))) {
+          ((std/core/types/True() : std/core/types/bool ) as .pat1: std/core/types/bool)
+             -> std/core/Cons<(std/core/list :: V -> V)<a>>(acc, (day5/.lift3647-split<a,(e :: E)>(yy, (std/core/Nil<a>), p)));
+          ((.skip std/core/types/False() : std/core/types/bool ) as .pat2: std/core/types/bool)
+             -> day5/.lift3647-split<a,(e :: E)>(yy, (std/core/types/.open<(std/core/types/(<>) :: E),(e :: E),(xs : (std/core/list :: V -> V)<a>, ys : (std/core/list :: V -> V)<a>) -> (std/core/list :: V -> V)<a>,(xs : (std/core/list :: V -> V)<a>, ys : (std/core/list :: V -> V)<a>) -> (e :: E) (std/core/list :: V -> V)<a>>((std/core/(++)<a>))(acc, (std/core/Cons<a>(y, (std/core/Nil<a>))))), p);
+        });
+    });
+  };
+fun split // inline size: 1
+  = forall<a,(e :: E)> fn<(e :: E)>(ll: (std/core/list :: V -> V)<a>, predicate: (a) -> (e :: E) std/core/types/bool){
+    day5/.lift3647-split<a,(e :: E)>(ll, (std/core/Nil<a>), predicate);
+  };

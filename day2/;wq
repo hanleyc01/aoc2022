@@ -1,0 +1,73 @@
+import std/os/path
+import std/os/file
+
+// Represents the possible choices that a player can make in 
+// the game of Rock, Paper, Scissors
+type rps
+    Rock
+    Paper
+    Scissors
+
+fun show( m : rps ) : string
+    match m
+        Rock -> "Rock"
+        Paper -> "Paper"
+        Scissors -> "Scissors"
+
+// Given two `rps`, return back important win-information (as specified in problem
+// description)
+fun play( p1, p2 ) : pure (int, int)
+    val rock = 1
+    val paper = 2
+    val scissors = 3
+    val loss = 0
+    val draw = 3
+    val win = 6
+    match (p1, p2)
+        (Rock, Scissors) -> (win + rock, loss + scissors)
+        (Rock, Paper) -> (loss + rock, win + paper)
+        (Rock, Rock) -> (draw + rock, draw + rock)
+        (Scissors, Rock) -> (loss + scissors, win + rock)
+        (Scissors, Paper) ->  (win + scissors, loss + paper)
+        (Scissors, Scissors) -> (draw + scissors, draw + scissors)
+        (Paper, Rock) -> (win + paper, loss + rock)
+        (Paper, Scissors) -> (loss + paper, win + scissors)
+        (Paper, Paper) -> (draw + paper, draw + paper)
+        
+// Retrieve a `rps` from a `string`
+fun rps( s )
+    match s
+        "A" -> Rock
+        "X" -> Rock
+        "B" -> Paper
+        "Y" -> Paper
+        "C" -> Scissors
+        "Z" -> Scissors
+
+fun split-tuple( s : string ) : _ maybe<(string, string)>
+    match s.split(" ")
+        Cons(xx, Cons(yy, Nil)) -> Just((xx, yy))
+        _ -> Nothing
+
+inline fun (==) ( x : maybe<a>, y : maybe<a> ) : bool
+    match (x, y)
+        (Nothing, Nothing) -> True
+        _ -> False
+    
+/*fun fst( p : (a, b) ) : a
+    match p { (x, _) -> x }*/
+
+/*fun snd( p : (a, b) ) : b
+    match p { (_, y) -> y }*/
+
+fun curry( f : (a, b) -> c, x : a, y : b ) : c
+    f(x, y)
+
+fun main()
+    val conts = path("test.txt").read-text-file.lines
+    conts.map(trim).map(split-tuple).filter( fn (x) (x == Nothing) )
+        .unjust
+        .map( fn (x) (x.fst.rps, x.snd.rps) )
+        .map( fn (x) ((x.fst.play(x.snd)) ) )
+        .unzip.fst.show.println
+    

@@ -1,0 +1,46 @@
+module interface list-extra
+ 
+//------------------------------
+//#kki: import declarations
+ 
+import std/core/types = std/core/types = "";
+import std/core/hnd = std/core/hnd = "";
+import std/core = std/core = "";
+ 
+//------------------------------
+//#kki: external imports
+ 
+ 
+//------------------------------
+//#kki: fixity declarations
+ 
+ 
+//------------------------------
+//#kki: local imported aliases
+ 
+ 
+//------------------------------
+//#kki: type declarations
+ 
+ 
+//------------------------------
+//#kki: declarations
+ 
+// Get an item out of a list, but if the index is out of bounds of the list
+// it returns `Nothing`
+pub fun get : forall<a> (ls : (std/core/list :: V -> V)<a>, index : std/core/types/int) -> (std/core/types/maybe :: V -> V)<a>;
+// Inserts an element at an index
+fun insert : forall<a> (ls : (std/core/list :: V -> V)<a>, to-insert : a, index : std/core/types/int) -> (std/core/list :: V -> V)<a>;
+// monadic lift
+fun .mlift311-remove : forall<a> (x : a, .y.306 : (std/core/list :: V -> V)<a>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<a>;
+// Remove an item from a list given an index, return the list back with the element removed
+// Will throw an exception in the case of an index out of bounds
+fun remove : forall<a> (ls : (std/core/list :: V -> V)<a>, index : std/core/types/int) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/list :: V -> V)<a>;
+ 
+//------------------------------
+//#kki: external declarations
+ 
+ 
+//------------------------------
+//#kki: inline definitions
+ 

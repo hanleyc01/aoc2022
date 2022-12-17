@@ -1,0 +1,117 @@
+module interface stack
+ 
+//------------------------------
+//#kki: import declarations
+ 
+import std/core/types = std/core/types = "";
+import std/core/hnd = std/core/hnd = "";
+import std/core = std/core = "";
+ 
+//------------------------------
+//#kki: external imports
+ 
+ 
+//------------------------------
+//#kki: fixity declarations
+ 
+ 
+//------------------------------
+//#kki: local imported aliases
+ 
+// An alias for pure effects: a pure function always returns the same result
+// when called with the same arguments but may not terminate or raise an exception.
+local alias std/core/pure :: E = <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X)> = 1;
+ 
+//------------------------------
+//#kki: type declarations
+ 
+// Stack data structure, following the last in, first out principle;
+// do to language constraints, the structure is immutable
+pub value{0,2} type stack <a> :: V -> V {
+  // Stack data structure, following the last in, first out principle;
+// do to language constraints, the structure is immutable
+  pub con Stack(top: (std/core/types/maybe :: V -> V)<a>, rest: (std/core/list :: V -> V)<a>) : forall<a> (top : (std/core/types/maybe :: V -> V)<a>, rest : (std/core/list :: V -> V)<a>) -> (stack :: V -> V)<a>;
+};
+ 
+//------------------------------
+//#kki: declarations
+ 
+// Automatically generated. Retrieves the `top` constructor field of the `:stack` type.
+pub fun top : forall<a> (^ stack : (stack :: V -> V)<a>) -> (std/core/types/maybe :: V -> V)<a>;
+// Automatically generated. Retrieves the `rest` constructor field of the `:stack` type.
+pub fun rest : forall<a> (^ stack : (stack :: V -> V)<a>) -> (std/core/list :: V -> V)<a>;
+pub fun .copy : forall<a> (.this : (stack :: V -> V)<a>, top : (std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>>, rest : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>>) -> (stack :: V -> V)<a>;
+// Declare a stack with just one element
+pub fun stack : forall<a> (top : a) -> (stack :: V -> V)<a>;
+// Declare a stack with a top, and rest defined
+pub fun stack.1 : forall<a> (top : a, rest : (std/core/list :: V -> V)<a>) -> (stack :: V -> V)<a>;
+// Convert a list to a stack
+pub fun from-list : forall<a> (ls : (std/core/list :: V -> V)<a>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (stack :: V -> V)<a>;
+// Pop off the first element from the list
+pub fun pop : forall<a> (st : (stack :: V -> V)<a>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (a, (stack :: V -> V)<a>);
+// monadic lift
+fun .mlift819-op : forall<a> (accum : (std/core/list :: V -> V)<a>, n' : std/core/types/int, .y.808 : (a, (stack :: V -> V)<a>)) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ((std/core/list :: V -> V)<a>, (stack :: V -> V)<a>);
+// lifted local: pop-n, acc
+fun .lift803-pop-n : forall<a> (st' : (stack :: V -> V)<a>, n' : std/core/types/int, accum : (std/core/list :: V -> V)<a>) -> <(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ((std/core/list :: V -> V)<a>, (stack :: V -> V)<a>);
+// Pop `n` elements off of the stack
+pub fun pop-n : forall<a> (st : (stack :: V -> V)<a>, n : std/core/types/int) -> <(std/core/pure :: E)> ((std/core/list :: V -> V)<a>, (stack :: V -> V)<a>);
+// Push an element onto the stack
+pub fun push : forall<a> (st : (stack :: V -> V)<a>, to-push : a) -> (stack :: V -> V)<a>;
+pub fun push-all : forall<a> (st : (stack :: V -> V)<a>, to-push : (std/core/list :: V -> V)<a>) -> (stack :: V -> V)<a>;
+pub fun show : (st : (stack :: V -> V)<std/core/types/string>) -> std/core/types/string;
+pub fun show.1 : (st : (stack :: V -> V)<std/core/types/int>) -> std/core/types/string;
+ 
+//------------------------------
+//#kki: external declarations
+ 
+ 
+//------------------------------
+//#kki: inline definitions
+ 
+//.inline-section
+inline borrow "^" fun top // inline size: 0
+  = forall<a> fn(stack0: (stack :: V -> V)<a>){
+    (match (stack0) {
+      ((.skip stack/Stack((.x: (std/core/types/maybe :: V -> V)<a>) : (std/core/types/maybe :: V -> V)<a>, (.pat0: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (stack :: V -> V)<a> ) as .pat: ((stack :: V -> V)<a>))
+         -> .x;
+    });
+  };
+inline borrow "^" fun rest // inline size: 0
+  = forall<a> fn(stack0: (stack :: V -> V)<a>){
+    (match (stack0) {
+      ((.skip stack/Stack((.pat0: (std/core/types/maybe :: V -> V)<a>) : (std/core/types/maybe :: V -> V)<a>, (.x: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (stack :: V -> V)<a> ) as .pat: ((stack :: V -> V)<a>))
+         -> .x;
+    });
+  };
+fun .copy // inline size: 3
+  = forall<a> fn(.this: (stack :: V -> V)<a>, top0: (std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>>, rest0: (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>>){
+    stack/Stack<a>((match (top0) {
+        ((std/core/types/Optional((.top.110: (std/core/types/maybe :: V -> V)<a>) : (std/core/types/maybe :: V -> V)<a>) : (std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>> ) as .pat: ((std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>>))
+           -> .top.110;
+        ((.skip std/core/types/None() : (std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>> ) as .pat0: ((std/core/types/optional :: V -> V)<(std/core/types/maybe :: V -> V)<a>>))
+           -> (match (.this) {
+            ((.skip stack/Stack((.x: (std/core/types/maybe :: V -> V)<a>) : (std/core/types/maybe :: V -> V)<a>, (.pat00: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (stack :: V -> V)<a> ) as .pat1: ((stack :: V -> V)<a>))
+               -> .x;
+          });
+      }), (match (rest0) {
+        ((std/core/types/Optional((.rest.117: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>> ) as .pat10: ((std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>>))
+           -> .rest.117;
+        ((.skip std/core/types/None() : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>> ) as .pat2: ((std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<a>>))
+           -> (match (.this) {
+            ((.skip stack/Stack((.pat01: (std/core/types/maybe :: V -> V)<a>) : (std/core/types/maybe :: V -> V)<a>, (.x0: (std/core/list :: V -> V)<a>) : (std/core/list :: V -> V)<a>) : (stack :: V -> V)<a> ) as .pat3: ((stack :: V -> V)<a>))
+               -> .x0;
+          });
+      }));
+  };
+fun stack // inline size: 2
+  = forall<a> fn(top0: a){
+    stack/Stack<a>((std/core/types/Just<a>(top0)), (std/core/Nil<a>));
+  };
+fun stack.1 // inline size: 2
+  = forall<a> fn(top0: a, rest0: (std/core/list :: V -> V)<a>){
+    stack/Stack<a>((std/core/types/Just<a>(top0)), rest0);
+  };
+fun pop-n // inline size: 1
+  = forall<a> fn<<(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>>>(st: (stack :: V -> V)<a>, n: std/core/types/int){
+    stack/.lift803-pop-n<a>(st, n, (std/core/Nil<a>));
+  };

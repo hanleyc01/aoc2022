@@ -1,0 +1,212 @@
+module interface day2
+ 
+//------------------------------
+//#kki: import declarations
+ 
+import std/core/types = std/core/types = "";
+import std/core/hnd = std/core/hnd = "";
+import std/core = std/core = "";
+import std/text/parse = std/text/parse = "";
+import std/os/path = std/os/path = "";
+import std/os/dir = std/os/dir = "";
+import std/os/file = std/os/file = "";
+ 
+//------------------------------
+//#kki: external imports
+ 
+ 
+//------------------------------
+//#kki: fixity declarations
+ 
+ 
+//------------------------------
+//#kki: local imported aliases
+ 
+ 
+//------------------------------
+//#kki: type declarations
+ 
+pub value{1,0} type res {
+  pub con L : res;
+  pub con D : res;
+  pub con W : res;
+};
+// Represents the possible choices that a player can make in 
+// the game of Rock, Paper, Scissors
+pub value{1,0} type rps {
+  pub con Rock : rps;
+  pub con Paper : rps;
+  pub con Scissors : rps;
+};
+ 
+//------------------------------
+//#kki: declarations
+ 
+// Automatically generated. Tests for the `L` constructor of the `:res` type.
+pub fun is-l : (^ res : res) -> std/core/types/bool;
+// Automatically generated. Tests for the `D` constructor of the `:res` type.
+pub fun is-d : (^ res : res) -> std/core/types/bool;
+// Automatically generated. Tests for the `W` constructor of the `:res` type.
+pub fun is-w : (^ res : res) -> std/core/types/bool;
+// Automatically generated. Tests for the `Rock` constructor of the `:rps` type.
+pub fun is-rock : (^ rps : rps) -> std/core/types/bool;
+// Automatically generated. Tests for the `Paper` constructor of the `:rps` type.
+pub fun is-paper : (^ rps : rps) -> std/core/types/bool;
+// Automatically generated. Tests for the `Scissors` constructor of the `:rps` type.
+pub fun is-scissors : (^ rps : rps) -> std/core/types/bool;
+pub fun show : (m : rps) -> std/core/types/string;
+pub fun show.1 : (r : res) -> std/core/types/string;
+pub fun res : (s : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> res;
+// Retrieve a `rps` from a `string`
+pub fun rps : (s : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> rps;
+pub fun split-tuple : (s : std/core/types/string) -> (std/core/types/maybe :: V -> V)<(std/core/types/string, std/core/types/string)>;
+pub fun (==) : forall<a> (x : (std/core/types/maybe :: V -> V)<a>, y : (std/core/types/maybe :: V -> V)<a>) -> std/core/types/bool;
+pub fun curry : forall<a,b,c> (f : (a, b) -> c, x : a, y : b) -> c;
+// Given two `rps`, return back important win-information (as specified in problem
+// description)
+pub fun play : (p1 : rps, p2 : rps) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/types/int, std/core/types/int);
+pub fun play2 : (p : rps, r : res) -> <(std/core/console :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> (std/core/types/int, std/core/types/int);
+// monadic lift
+fun .mlift32286-main : (.y.32275 : (std/core/list :: V -> V)<(std/core/types/int, std/core/types/int)>) -> <(std/core/console :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32287-main : (.c.32270 : rps, .c.32272 : res) -> (rps, res);
+// monadic lift
+fun .mlift32288-main : (s2.32255 : std/core/types/string, .c.32270 : rps) -> (rps, res);
+// monadic lift
+fun .mlift32289-main : (.y.32273 : (std/core/list :: V -> V)<(rps, res)>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32290-main : (.y.32268 : (std/core/list :: V -> V)<(std/core/types/string, std/core/types/string)>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32291-main : (.y.32267 : (std/core/list :: V -> V)<(std/core/types/maybe :: V -> V)<(std/core/types/string, std/core/types/string)>>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32292-main : (.y.32266 : (std/core/list :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32293-main : (.y.32265 : (std/core/list :: V -> V)<std/core/types/string>) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X),(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift32294-main : (.y.32264 : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+pub fun main : () -> <(std/core/console :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+pub fun .hmain : () -> <(std/core/console :: X),(std/core/fsys :: X)> ();
+ 
+//------------------------------
+//#kki: external declarations
+ 
+ 
+//------------------------------
+//#kki: inline definitions
+ 
+//.inline-section
+inline borrow "^" fun is-l // inline size: 1
+  = fn(res0: res){
+    match (res0) {
+      ((day2/L() : res ) as .pat: res)
+         -> std/core/types/True;
+      (.pat0: res)
+         -> std/core/types/False;
+    };
+  };
+inline borrow "^" fun is-d // inline size: 1
+  = fn(res0: res){
+    match (res0) {
+      ((day2/D() : res ) as .pat: res)
+         -> std/core/types/True;
+      (.pat0: res)
+         -> std/core/types/False;
+    };
+  };
+inline borrow "^" fun is-w // inline size: 1
+  = fn(res0: res){
+    match (res0) {
+      ((day2/W() : res ) as .pat: res)
+         -> std/core/types/True;
+      (.pat0: res)
+         -> std/core/types/False;
+    };
+  };
+inline borrow "^" fun is-rock // inline size: 1
+  = fn(rps0: rps){
+    match (rps0) {
+      ((day2/Rock() : rps ) as .pat: rps)
+         -> std/core/types/True;
+      (.pat0: rps)
+         -> std/core/types/False;
+    };
+  };
+inline borrow "^" fun is-paper // inline size: 1
+  = fn(rps0: rps){
+    match (rps0) {
+      ((day2/Paper() : rps ) as .pat: rps)
+         -> std/core/types/True;
+      (.pat0: rps)
+         -> std/core/types/False;
+    };
+  };
+inline borrow "^" fun is-scissors // inline size: 1
+  = fn(rps0: rps){
+    match (rps0) {
+      ((day2/Scissors() : rps ) as .pat: rps)
+         -> std/core/types/True;
+      (.pat0: rps)
+         -> std/core/types/False;
+    };
+  };
+fun show // inline size: 2
+  = fn(m: rps){
+    match (m) {
+      ((day2/Rock() : rps ) as .pat: rps)
+         -> "Rock";
+      ((day2/Paper() : rps ) as .pat0: rps)
+         -> "Paper";
+      ((.skip day2/Scissors() : rps ) as .pat1: rps)
+         -> "Scissors";
+    };
+  };
+fun show.1 // inline size: 2
+  = fn(r: res){
+    match (r) {
+      ((day2/L() : res ) as .pat: res)
+         -> "L";
+      ((day2/D() : res ) as .pat0: res)
+         -> "D";
+      ((.skip day2/W() : res ) as .pat1: res)
+         -> "W";
+    };
+  };
+fun res // inline size: 4
+  = fn<<(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>>>(s: std/core/types/string){
+    match (s) {
+      ("X" as .pat: std/core/types/string)
+         -> day2/L;
+      ("Y" as .pat0: std/core/types/string)
+         -> day2/D;
+      ("Z" as .pat1: std/core/types/string)
+         -> day2/W;
+      (.pat2: std/core/types/string)
+         -> std/core/error-pattern<res>("day2.kk(50, 5)", "res");
+    };
+  };
+fun rps // inline size: 4
+  = fn<<(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>>>(s: std/core/types/string){
+    match (s) {
+      ("A" as .pat: std/core/types/string)
+         -> day2/Rock;
+      ("B" as .pat0: std/core/types/string)
+         -> day2/Paper;
+      ("C" as .pat1: std/core/types/string)
+         -> day2/Scissors;
+      (.pat2: std/core/types/string)
+         -> std/core/error-pattern<rps>("day2.kk(39, 5)", "rps");
+    };
+  };
+inline fun (==) // inline size: 1
+  = forall<a> fn(x: (std/core/types/maybe :: V -> V)<a>, y: (std/core/types/maybe :: V -> V)<a>){
+    (match (x, y) {
+      ((std/core/types/Nothing() : (std/core/types/maybe :: V -> V)<a> ) as .pat1: (std/core/types/maybe :: V -> V)<a>), ((std/core/types/Nothing() : (std/core/types/maybe :: V -> V)<a> ) as .pat0: ((std/core/types/maybe :: V -> V)<a>))
+         -> std/core/types/True;
+      (.pat2: ((std/core/types/maybe :: V -> V)<a>)), (.pat: ((std/core/types/maybe :: V -> V)<a>))
+         -> std/core/types/False;
+    });
+  };
+fun curry // inline size: 1
+  = forall<a,b,c> fn(f: (a, b) -> c, x: a, y: b){
+    f(x, y);
+  };

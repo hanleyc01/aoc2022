@@ -1,0 +1,119 @@
+module interface main
+ 
+//------------------------------
+//#kki: import declarations
+ 
+import std/core/types = std/core/types = "";
+import std/core/hnd = std/core/hnd = "";
+import std/core = std/core = "";
+import std/text/parse = std/text/parse = "";
+import std/os/path = std/os/path = "";
+import std/os/dir = std/os/dir = "";
+import std/os/file = std/os/file = "";
+import std/os/env = std/os/env = "";
+import list-extra = list-extra = "";
+ 
+//------------------------------
+//#kki: external imports
+ 
+ 
+//------------------------------
+//#kki: fixity declarations
+ 
+ 
+//------------------------------
+//#kki: local imported aliases
+ 
+// An alias for pure effects: a pure function always returns the same result
+// when called with the same arguments but may not terminate or raise an exception.
+local alias std/core/pure :: E = <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X)> = 1;
+ 
+//------------------------------
+//#kki: type declarations
+ 
+pub value{0,1} type packet {
+  pub con Packet(datastream: (std/core/list :: V -> V)<std/core/types/char>) : (datastream : (std/core/list :: V -> V)<std/core/types/char>) -> packet;
+};
+ 
+//------------------------------
+//#kki: declarations
+ 
+// Automatically generated. Retrieves the `datastream` constructor field of the `:packet` type.
+pub fun datastream : (^ packet : packet) -> (std/core/list :: V -> V)<std/core/types/char>;
+pub fun .copy : (.this : packet, datastream : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>>) -> packet;
+// monadic lift
+fun .mlift852-count-start : forall<(h :: H)> (sig : (std/core/list :: V -> V)<std/core/types/char>, .y.797 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/div :: X),(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X)> std/core/types/bool;
+// monadic lift
+fun .mlift853-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, .y.807 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift854-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, fr : std/core/types/char) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+// monadic lift
+fun .mlift855-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, .y.805 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift856-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, t : std/core/types/char) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+// monadic lift
+fun .mlift857-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, .y.803 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift858-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, s : std/core/types/char) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+// monadic lift
+fun .mlift859-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, .y.801 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift860-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, f : std/core/types/char) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+// monadic lift
+fun .mlift861-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, .y.799 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift862-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, .y.809 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift863-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, sig : (std/core/list :: V -> V)<std/core/types/char>, .y.798 : std/core/types/int) -> <(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/types/div :: X),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift864-count-start : forall<(h :: H)> (count : (std/core/types/local-var :: (H, V) -> V)<(h :: H),std/core/types/int>, wild_ : ()) -> <(std/core/types/div :: E),(std/core/types/local :: H -> X)<(h :: H)>,(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/console :: X)> std/core/types/int;
+pub fun count-start : (p : packet) -> <(std/core/pure :: E),(std/core/console :: X)> std/core/types/int;
+pub fun show : (p : packet) -> std/core/types/string;
+pub fun packet : (s : (std/core/list :: V -> V)<std/core/types/char>) -> packet;
+// monadic lift
+fun .mlift865-main : (.y.818 : std/core/types/int) -> <(std/core/pure :: E),(std/core/console :: X)> ();
+// monadic lift
+fun .mlift866-main : (contents : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>,(std/core/fsys :: X)> ();
+// monadic lift
+fun .mlift867-main : (.y.816 : std/core/types/string) -> <(std/core/types/handled :: HX -> X)<(std/core/exn :: HX)>> ();
+pub fun main : () -> <(std/core/pure :: E),(std/core/console :: X),(std/core/fsys :: X),(std/core/types/ndet :: X)> ();
+pub fun .hmain : () -> <(std/core/console :: X),(std/core/types/div :: X),(std/core/fsys :: X),(std/core/types/ndet :: X)> ();
+ 
+//------------------------------
+//#kki: external declarations
+ 
+ 
+//------------------------------
+//#kki: inline definitions
+ 
+//.inline-section
+inline borrow "^" fun datastream // inline size: 0
+  = fn(packet0: packet){
+    match (packet0) {
+      ((.skip main/Packet((.x: (std/core/list :: V -> V)<std/core/types/char>) : (std/core/list :: V -> V)<std/core/types/char>) : packet ) as .pat: packet)
+         -> .x;
+    };
+  };
+fun .copy // inline size: 2
+  = fn(.this: packet, datastream0: (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>>){
+    main/Packet((match (datastream0) {
+      ((std/core/types/Optional((.datastream.34: (std/core/list :: V -> V)<std/core/types/char>) : (std/core/list :: V -> V)<std/core/types/char>) : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>> ) as .pat: ((std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>>))
+         -> .datastream.34;
+      ((.skip std/core/types/None() : (std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>> ) as .pat0: ((std/core/types/optional :: V -> V)<(std/core/list :: V -> V)<std/core/types/char>>))
+         -> (match (.this) {
+          ((.skip main/Packet((.x: (std/core/list :: V -> V)<std/core/types/char>) : (std/core/list :: V -> V)<std/core/types/char>) : packet ) as .pat1: packet)
+             -> .x;
+        });
+    }));
+  };
+fun show // inline size: 1
+  = fn(p: packet){
+    std/core/string.2((match (p) {
+      ((.skip main/Packet((.x: (std/core/list :: V -> V)<std/core/types/char>) : (std/core/list :: V -> V)<std/core/types/char>) : packet ) as .pat: packet)
+         -> .x;
+    }));
+  };
+fun packet // inline size: 1
+  = fn(s: (std/core/list :: V -> V)<std/core/types/char>){
+    main/Packet(s);
+  };
